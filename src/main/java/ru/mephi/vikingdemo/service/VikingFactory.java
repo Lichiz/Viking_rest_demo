@@ -1,6 +1,7 @@
 
 package ru.mephi.vikingdemo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import net.datafaker.Faker;
@@ -10,6 +11,8 @@ import ru.mephi.vikingdemo.model.EquipmentItem;
 import ru.mephi.vikingdemo.model.HairColor;
 import ru.mephi.vikingdemo.model.Viking;
 import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class VikingFactory {
@@ -19,12 +22,32 @@ public class VikingFactory {
 
     public Viking createRandomViking() {
         return new Viking(
+                null,
                 faker.name().firstName(),
                 18 + random.nextInt(43),
                 160 + random.nextInt(41),
                 HairColor.values()[random.nextInt(HairColor.values().length)],
                 BeardStyle.values()[random.nextInt(BeardStyle.values().length)],
                 createRandomEquipment()
+        );
+    }
+
+    public List<Viking> createRandomVikings(int lenght){
+        List<Viking> vikings = Stream.generate(() -> createRandomViking())
+                .limit(30)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return vikings;
+    }
+
+    public Viking createCustomViking(Viking viking){
+        return new Viking(
+                viking.id(),
+                viking.name(),
+                viking.age(),
+                viking.heightCm(),
+                viking.hairColor(),
+                viking.beardStyle(),
+                viking.equipment()
         );
     }
 

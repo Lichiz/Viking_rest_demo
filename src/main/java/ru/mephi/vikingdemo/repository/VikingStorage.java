@@ -62,4 +62,9 @@ public class VikingStorage {
     public void deleteById(int id) {
         vikingRepository.deleteById(id);
     }
+
+    @Transactional
+    public boolean updateViking(Viking viking){
+        return vikingRepository.updateById(viking);
+    }
 }
