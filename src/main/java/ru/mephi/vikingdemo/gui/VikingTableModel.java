@@ -13,38 +13,10 @@ public class VikingTableModel extends AbstractTableModel {
     private final String[] columns = {"Name", "Age", "Height (cm)", "Hair color", "Beard style", "Equipment"};
     private final List<Viking> data = new ArrayList<>();
 
-
-    public void addVikings(List<Viking> vikings) {
-        for (Viking viking : vikings) {
-            addViking(viking);
-        }
-    }
-
-
     public void addViking(Viking viking) {
         int row = data.size();
         data.add(viking);
         fireTableRowsInserted(row, row);
-    }
-
-    public void deleteViking(Integer vikingId) {
-        for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).id().equals(vikingId)) {
-                data.remove(i);
-                fireTableRowsDeleted(i, i);
-                return;
-            }
-        }
-    }
-
-    public void updateViking(Viking updatedViking) {
-        for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).id().equals(updatedViking.id())) {
-                data.set(i, updatedViking);
-                fireTableRowsUpdated(i, i);
-                return;
-            }
-        }
     }
 
     @Override
@@ -80,5 +52,19 @@ public class VikingTableModel extends AbstractTableModel {
         return equipment.stream()
                 .map(item -> item.name() + " [" + item.quality() + "]")
                 .collect(Collectors.joining(", "));
+    }
+
+    public void removeViking(int index) {
+        if (index >= 0 && index < data.size()) {
+            data.remove(index);
+            fireTableRowsDeleted(index, index);
+        }
+    }
+
+    public void updateViking(int index, Viking viking) {
+        if (index >= 0 && index < data.size()) {
+            data.set(index, viking);
+            fireTableRowsUpdated(index, index);
+        }
     }
 }

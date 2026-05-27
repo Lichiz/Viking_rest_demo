@@ -13,7 +13,7 @@ public class EquipmentFactory {
             "Common", "Uncommon", "Rare", "Legendary"
     );
     private static final Random RANDOM = new Random();
-    
+
     public static EquipmentItem createItem() {
 
         // Случайный тип предмета (равномерно)
@@ -38,5 +38,5 @@ public class EquipmentFactory {
             return "Legendary";    // 3%
         }
     }
-    
+
 }

@@ -32,16 +32,15 @@ public class VikingListener {
         gui.addNewViking(service.createRandomViking());
     }
 
-    void addCustom(Viking viking){
-        gui.addNewViking(service.createCustomViking(viking));
+    public void onVikingAdded(Viking v) {
+        if (gui != null) gui.addNewViking(v);
     }
 
-    void deleteVikingById(Integer vikingId){
-        service.deleteById(vikingId);
-        gui.onDeleteViking(vikingId);
+    public void onVikingDeleted(int index) {
+        if (gui != null) gui.removeVikingFromTable(index);
     }
 
-    void updateViking(Viking viking){
-        gui.onUpdateViking(viking, service.updateViking(viking));
+    public void onVikingUpdated(int index, Viking v) {
+        if (gui != null) gui.updateVikingInTable(index, v);
     }
 }
