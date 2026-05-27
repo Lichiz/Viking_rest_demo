@@ -34,7 +34,7 @@ public class VikingFactory {
 
     public List<Viking> createRandomVikings(int lenght){
         List<Viking> vikings = Stream.generate(() -> createRandomViking())
-                .limit(30)
+                .limit(10)
                 .collect(Collectors.toCollection(ArrayList::new));
         return vikings;
     }

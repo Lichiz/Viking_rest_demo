@@ -49,7 +49,7 @@ public class VikingDesktopFrame extends JFrame {
         JButton createRandomVikingButton = new JButton("Create random viking");
         createRandomVikingButton.addActionListener(event -> onCreateViking());
 
-        JButton createRandomVikingsButton = new JButton("Create 30 random vikings");
+        JButton createRandomVikingsButton = new JButton("Create 10 random vikings");
         createRandomVikingsButton.addActionListener(event -> onCreateVikings());
 
         JButton showStatisticsButton = new JButton("Show statistics");
